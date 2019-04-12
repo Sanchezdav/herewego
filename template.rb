@@ -37,17 +37,13 @@ def add_gems
 end
 
 def set_application_name
-  # Ask user for application name
-  application_name = ask("What's the name of your application? Default: my_project")
+  if rails_5?
+    environment "config.application_name = Rails.application.class.parent_name"
+  else
+    environment "config.application_name = Rails.application.class.module_parent_name"
+  end
 
-  # Checks if application name is empty and add default Kickoff.
-  application_name = application_name.present? ? application_name : "my_project"
-
-  # Add Application Name to Config
-  environment "config.application_name = '#{application_name}'"
-
-  # Announce the user where he can change the application name in the future.
-  puts "Your application name is #{application_name}. You can change it later on: ./config/application.rb"
+  puts "You can change application name inside: ./config/application.rb"
 end
 
 def add_users
