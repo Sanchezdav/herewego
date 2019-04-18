@@ -179,7 +179,7 @@ def stop_spring
 end
 
 # Main setup
-source_paths
+add_template_repository_to_source_path
 
 add_gems
 
