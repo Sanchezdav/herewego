@@ -84,7 +84,8 @@ def add_users
 
    # Create Devise User
   generate :devise, "User",
-           "name",
+           "first_name",
+           "last_name",
            "admin:boolean"
 
   # Set admin default to false
