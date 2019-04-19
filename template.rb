@@ -77,7 +77,18 @@ def add_users
   environment "config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }",
               env: 'development'
 
-  route "root to: 'home#index'"
+  content = <<-CODE
+
+    unauthenticated :user do
+      devise_scope :user do
+        root to: 'unauthenticated#index'
+      end
+    end
+
+    authenticated :user do
+      root 'home#index'
+    end
+  CODE
 
   # Generate Devise views via Bootstrap
   generate "devise:views:bootstrapped"
@@ -87,6 +98,8 @@ def add_users
            "first_name",
            "last_name",
            "admin:boolean"
+
+  insert_into_file 'config/routes.rb', content + "\n", before: "# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html"
 
   # Set admin default to false
   in_root do
