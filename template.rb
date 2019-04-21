@@ -52,6 +52,7 @@ def add_gems
   gem 'font-awesome-sass', '~> 5.8', '>= 5.8.1'
   gem 'friendly_id', '~> 5.2', '>= 5.2.5'
   gem 'name_of_person', '~> 1.1'
+  gem 'haml-rails', '~> 2.0'
 
   if rails_5?
     gsub_file "Gemfile", /gem 'sqlite3'/, "gem 'sqlite3', '~> 1.3.0'"
@@ -220,7 +221,7 @@ after_bundle do
   git commit: %Q{ -m 'Initial commit' }
 
   say
-  say "Herewego!", :blue
+  say "Herewego!", :green
   say
   say "To get started with your new app:", :green
   say "cd #{app_name} - Switch to your new app's directory."
