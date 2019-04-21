@@ -6,6 +6,17 @@ Thanks to [Chris Oliver](https://twitter.com/excid3/) and [Jumpstart](https://gi
 
 **Note:** Requires Rails 5.2 or higher
 
+#### Included gems
+
+- [administrate](https://github.com/thoughtbot/administrate)
+- [bootstrap](https://github.com/twbs/bootstrap-rubygem)
+- [devise](https://github.com/plataformatec/devise)
+- [devise-bootstrapped](https://github.com/king601/devise-bootstrapped)
+- [font-awesome-sass](https://github.com/FortAwesome/font-awesome-sass)
+- [friendly_id](https://github.com/norman/friendly_id)
+- [name_of_person](https://github.com/basecamp/name_of_person)
+- [haml-rails](https://github.com/indirect/haml-rails)
+
 ## Getting Started
 
 Herewego is a Rails template to start an application quickly with an extra punch.
@@ -15,8 +26,8 @@ Herewego is a Rails template to start an application quickly with an extra punch
 You'll need the following installed to run the template successfully:
 
 * Ruby 2.5 or higher
-* bundler - `gem install bundler`
-* rails - `gem install rails`
+* Bundler - `gem install bundler`
+* Rails - `gem install rails`
 * Yarn - `brew install yarn` or [Install Yarn](https://yarnpkg.com/en/docs/install)
 * Foreman (optional) - `gem install foreman` - helps run all your
   processes in development
