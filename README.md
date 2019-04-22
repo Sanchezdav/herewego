@@ -16,6 +16,7 @@ Thanks to [Chris Oliver](https://twitter.com/excid3/) and [Jumpstart](https://gi
 - [friendly_id](https://github.com/norman/friendly_id)
 - [name_of_person](https://github.com/basecamp/name_of_person)
 - [haml-rails](https://github.com/indirect/haml-rails)
+- [gravatar_image_tag](https://github.com/mdeering/gravatar_image_tag)
 
 ## Getting Started
 

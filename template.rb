@@ -53,6 +53,7 @@ def add_gems
   gem 'friendly_id', '~> 5.2', '>= 5.2.5'
   gem 'name_of_person', '~> 1.1'
   gem 'haml-rails', '~> 2.0'
+  gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 
   if rails_5?
     gsub_file "Gemfile", /gem 'sqlite3'/, "gem 'sqlite3', '~> 1.3.0'"
