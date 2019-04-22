@@ -193,6 +193,10 @@ def stop_spring
   run "spring stop"
 end
 
+def add_sitemap
+  rails_command "sitemap:install"
+end
+
 # Main setup
 add_template_repository_to_source_path
 
@@ -207,6 +211,7 @@ after_bundle do
   add_friendly_id
 
   copy_templates
+  add_sitemap
 
   # Migrate
   rails_command "db:create"
