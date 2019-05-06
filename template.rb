@@ -83,12 +83,12 @@ def add_users
 
     unauthenticated :user do
       devise_scope :user do
-        root to: 'unauthenticated#index'
+        root to: 'unauthenticated#index', as: :unauthenticated_root
       end
     end
 
     authenticated :user do
-      root 'home#index'
+      root to: 'home#index', as: :authenticated_root
     end
   CODE
 
@@ -101,7 +101,7 @@ def add_users
            "last_name",
            "admin:boolean"
 
-  insert_into_file 'config/routes.rb', content + "\n", before: "# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html"
+  insert_into_file 'config/routes.rb', content + "\n", after: "Rails.application.routes.draw do"
 
   # Set admin default to false
   in_root do
