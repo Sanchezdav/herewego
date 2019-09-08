@@ -1,0 +1,11 @@
+.input {
+  @apply h-10 px-2 border rounded border-gray-400 w-full; 
+}
+
+.btn-primary-block {
+  @apply bg-indigo-500 text-white font-semibold py-2 px-4 rounded cursor-pointer;
+
+  &:hover {
+    @apply bg-indigo-400;
+  }
+}

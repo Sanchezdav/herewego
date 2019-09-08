@@ -7,14 +7,11 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("local-time").start()
+require("stylesheets/application.scss")
+require.context('../images', true)
 
-window.Rails = Rails
-
-import 'bootstrap'
-import 'data-confirm-modal'
-
-$(document).on("turbolinks:load", () => {
-  $('[data-toggle="tooltip"]').tooltip()
-  $('[data-toggle="popover"]').popover()
-})
+$(document).on('turbolinks:load', function () {
+  $(".alert").delay(2000).slideUp(500, function () {
+    $(".alert").alert('close');
+  });
+});

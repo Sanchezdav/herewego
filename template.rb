@@ -45,28 +45,15 @@ def rails_6?
 end
 
 def add_gems
-  gem 'administrate', '~> 0.11.0'
-  gem 'bootstrap', '~> 4.3', '>= 4.3.1'
-  gem 'devise', '~> 4.6', '>= 4.6.2'
-  gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
-  gem 'font-awesome-sass', '~> 5.8', '>= 5.8.1'
+  gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
+  gem 'devise', '~> 4.7', '>= 4.7.1'
   gem 'friendly_id', '~> 5.2', '>= 5.2.5'
   gem 'name_of_person', '~> 1.1'
-  gem 'haml-rails', '~> 2.0'
   gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
-
-  if rails_5?
-    gsub_file "Gemfile", /gem 'sqlite3'/, "gem 'sqlite3', '~> 1.3.0'"
-    gem 'webpacker', '~> 4.0.1'
-  end
 end
 
 def set_application_name
-  if rails_5?
-    environment "config.application_name = Rails.application.class.parent_name"
-  else
-    environment "config.application_name = Rails.application.class.module_parent_name"
-  end
+  environment "config.application_name = Rails.application.class.module_parent_name"
 
   puts "You can change application name inside: ./config/application.rb"
 end
@@ -92,8 +79,8 @@ def add_users
     end
   CODE
 
-  # Generate Devise views via Bootstrap
-  generate "devise:views:bootstrapped"
+  # Generate Devise views via Bootstrap	
+  generate "devise:views"
 
    # Create Devise User
   generate :devise, "User",
@@ -116,32 +103,34 @@ def add_users
   end
 end
 
-def add_webpack
-  # Rails 6+ comes with webpacker by default, so we can skip this step
-  return if rails_6?
-
-  # Our application layout already includes the javascript_pack_tag,
-  # so we don't need to inject it
-  rails_command 'webpacker:install'
-end
-
-def add_javascript
-  run "yarn add expose-loader jquery popper.js bootstrap data-confirm-modal local-time"
-
-  if rails_5?
-    run "yarn add turbolinks @rails/actioncable@pre @rails/actiontext@pre @rails/activestorage@pre @rails/ujs@pre"
-  end
+def add_jquery
+  run "yarn add jquery"
 
   content = <<-JS
     const webpack = require('webpack')
     environment.plugins.append('Provide', new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      Rails: '@rails/ujs'
+      $: 'jquery',	
+      jQuery: 'jquery',	
+      Rails: '@rails/ujs'	
     }))
   JS
 
   insert_into_file 'config/webpack/environment.js', content + "\n", before: "module.exports = environment"
+end
+
+def add_fontawesome
+  run "yarn add @fortawesome/fontawesome-free"
+end
+
+def add_tailwindcss
+  run "yarn add tailwindcss"
+
+  content = <<-JS
+    require('tailwindcss'),
+    require('autoprefixer'),
+  JS
+
+  insert_into_file './postcss.config.js', content, before: "require('postcss-import'),"
 end
 
 def copy_templates
@@ -203,8 +192,9 @@ after_bundle do
   set_application_name
   stop_spring
   add_users
-  add_webpack
-  add_javascript
+  add_jquery
+  add_fontawesome
+  add_tailwindcss
   add_friendly_id
 
   copy_templates

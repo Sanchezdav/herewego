@@ -4,14 +4,12 @@
     <%= render 'shared/head' %>
   </head>
 
-  <body>
+  <body class="antialiased bg-gray-200">
     <%= render 'shared/header' %>
     <%= render 'shared/flash_messages' %>
 
-    <div class="container py-3">
+    <div class="lg:px-10 px-4 py-5">
       <%= yield %>
     </div>
-
-    <%= render 'shared/footer' %>
   </body>
 </html>
