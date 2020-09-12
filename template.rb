@@ -104,7 +104,7 @@ def add_users
 end
 
 def add_fontawesome
-  run "yarn add @fontawesome/fontawesome-free"
+  run "yarn add @fortawesome/fontawesome-free"
 end
 
 def add_tailwindcss
