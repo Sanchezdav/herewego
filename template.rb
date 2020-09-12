@@ -131,14 +131,6 @@ end
 def add_administrate
   generate "administrate:install"
 
-  gsub_file "app/dashboards/user_dashboard.rb",
-    /email: Field::String/,
-    "email: Field::String,\n    password: Field::String.with_options(searchable: false)"
-
-  gsub_file "app/dashboards/user_dashboard.rb",
-    /FORM_ATTRIBUTES = \[/,
-    "FORM_ATTRIBUTES = [\n    :password,"
-
   gsub_file "app/controllers/admin/application_controller.rb",
     /# TODO Add authentication logic here\./,
     "redirect_to '/', alert: 'Not authorized.' unless user_signed_in? && current_user.admin?"
