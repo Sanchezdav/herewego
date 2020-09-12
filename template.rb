@@ -1,7 +1,7 @@
 =begin
 Template Name: Herewego Rails Template
 Author: David Sanchez
-Author URI: https://code-ando.com/
+Author URI: https://codeando.dev
 Instructions: $ rails new myapp -d <postgresql, mysql, sqlite> -m template.rb
 =end
 
@@ -103,23 +103,8 @@ def add_users
   end
 end
 
-def add_jquery
-  run "yarn add jquery"
-
-  content = <<-JS
-    const webpack = require('webpack')
-    environment.plugins.append('Provide', new webpack.ProvidePlugin({
-      $: 'jquery',	
-      jQuery: 'jquery',	
-      Rails: '@rails/ujs'	
-    }))
-  JS
-
-  insert_into_file 'config/webpack/environment.js', content + "\n", before: "module.exports = environment"
-end
-
 def add_fontawesome
-  run "yarn add @fortawesome/fontawesome-free"
+  run "yarn add @fontawesome/fontawesome-free"
 end
 
 def add_tailwindcss
@@ -192,7 +177,6 @@ after_bundle do
   set_application_name
   stop_spring
   add_users
-  add_jquery
   add_fontawesome
   add_tailwindcss
   add_friendly_id
