@@ -7,8 +7,9 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("stylesheets/application.scss")
 require.context('../images', true)
+
+import 'stylesheets/application'
 
 $(document).on('turbolinks:load', function () {
   $(".alert").delay(2000).slideUp(500, function () {
