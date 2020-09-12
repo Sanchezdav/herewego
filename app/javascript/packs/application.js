@@ -11,8 +11,12 @@ require.context('../images', true)
 
 import 'stylesheets/application'
 
-$(document).on('turbolinks:load', function () {
-  $(".alert").delay(2000).slideUp(500, function () {
-    $(".alert").alert('close');
-  });
-});
+document.addEventListener('turbolinks:load', function () {
+  let notification = document.querySelector('.alert')
+
+  if (notification) {
+    setTimeout(function () {
+      document.querySelector('.alert').classList.add('hidden')
+    }, 3000)
+  }
+})
