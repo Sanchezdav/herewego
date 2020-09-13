@@ -45,7 +45,7 @@ def rails_6?
 end
 
 def add_gems
-  gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
+  gem 'administrate'
   gem 'devise', '~> 4.7', '>= 4.7.1'
   gem 'friendly_id', '~> 5.2', '>= 5.2.5'
   gem 'name_of_person', '~> 1.1'
@@ -130,6 +130,14 @@ end
 
 def add_administrate
   generate "administrate:install"
+
+  gsub_file "app/dashboards/user_dashboard.rb",
+    /email: Field::String/,
+    "email: Field::String,\n    password: Field::String.with_options(searchable: false)"
+
+  gsub_file "app/dashboards/user_dashboard.rb",
+    /FORM_ATTRIBUTES = \[/,
+    "FORM_ATTRIBUTES = [\n    :password,"
 
   gsub_file "app/controllers/admin/application_controller.rb",
     /# TODO Add authentication logic here\./,
