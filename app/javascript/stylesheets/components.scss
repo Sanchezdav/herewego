@@ -15,10 +15,10 @@
 }
 
 .btn-success {
-  @apply bg-green-500 text-white border-teal-700;
+  @apply bg-green-500 text-white border-gray-700;
 
   &:hover {
-    @apply bg-green-400 border-teal-500;
+    @apply bg-green-400 border-gray-500;
   }
 }
 

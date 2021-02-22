@@ -14,9 +14,6 @@
     <nav>
       <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
         <% if user_signed_in? %>
-          <% if current_user.admin? %>
-            <%= link_to "Admin", admin_root_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" %>
-          <% end %>
           <%= link_to "Settings", edit_user_registration_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" %>
         <% else %>
           <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" %></li>
@@ -27,7 +24,7 @@
 
     <% if user_signed_in? %>
       <%= link_to "#", id: "navbar-dropdown", class: "lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor" do %>
-        <%= image_tag gravatar_image_url(current_user.email, size: 60), height: 30, width: 30, class: "rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400" %>
+        <%= image_tag avatar(current_user.email, 60), height: 30, width: 30, class: "rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400" %>
       <% end %>
 
       <%= link_to destroy_user_session_path, method: :delete, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" do %>

@@ -8,11 +8,9 @@ Thanks to [Chris Oliver](https://twitter.com/excid3/) and [Jumpstart](https://gi
 
 #### Included gems
 
-- [administrate](https://github.com/thoughtbot/administrate)
 - [devise](https://github.com/plataformatec/devise)
-- [friendly_id](https://github.com/norman/friendly_id)
 - [name_of_person](https://github.com/basecamp/name_of_person)
-- [gravatar_image_tag](https://github.com/mdeering/gravatar_image_tag)
+- [tailwindcss-rails](https://github.com/rails/tailwindcss-rails)
 
 ## Getting Started
 
